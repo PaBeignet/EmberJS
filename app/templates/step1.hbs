@@ -1,0 +1,52 @@
+{{page-title "Step1"}}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<link href="app/styles/app.css">
+<div class="container">
+  <form class="img-rounded">
+    <div> <!--1-->
+      <h1>Selectionnez vos produits</h1>
+      <div class="form-group"><!--2-->
+        <div class="inline-block"><!--3-->
+          <label>Produits Disponibles :
+            <MultiSelect class="form-control" @elements={{this.dispoItems}} @selected={{this.dispoItems_}}
+                         @onChange={{this.changeDispo}}/>
+            <p>Vous avez inclus {{this.includedItems.length}} items</p>
+          </label>
+        </div><!--3-->
+        <div class="inline-block"><!--4-->
+          <div title="Ajouter" class="btn btn-primary list-btn" onClick= {{action 'add' this.dispoItems
+                                                                                  this.includedItems
+                                                                                  this.dispoItems_}}>
+            <span> &gt; </span>
+          </div><!--5-->
+          <div title="AjouterTous" class="btn btn-primary list-btn" onClick= {{action 'add' this.dispoItems
+                                                                                      this.includedItems
+                                                                                      this.dispoItems}}>
+            <span> &gt;&gt; </span>
+          </div><!--5-->
+
+          <div class="btn btn-primary list-btn" onClick= {{action 'remove' this.includedItems this.dispoItems
+                                                                  this.includedItems}}>
+            <span> 	&lt;&lt; </span>
+          </div><!--6-->
+          <div class="btn btn-primary list-btn" onClick= {{action 'remove' this.includedItems this.dispoItems
+                                                                  this.includedItems_}}>
+            <span> 	&lt; </span>
+          </div><!--6-->
+
+        </div><!--4-->
+        <div class="inline-block"><!--7-->
+          <label>Produits Inclus
+            <MultiSelect class="form-control" @elements={{this.includedItems}} @selected={{this.includedItems_}}
+                         @onChange={{this.changeIncluded}}/>
+          </label>
+        </div><!--7-->
+      </div><!--2-->
+
+      <!-- Faire un appel au helper qui compte le nombre d'objet dans la liste included-->
+    </div><!--1-->
+
+  </form>
+</div>
