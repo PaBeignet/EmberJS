@@ -12,6 +12,9 @@
       </div>
       <div class="col">
         <button class="btn btn-success" type="button" {{on "click" (fn this.save @contact)}}>Valider</button>
+        {{# if @cancelRoute}}
+          <LinkTo class="btn btn-danger" @route={{@cancelRoute}}>Annuler</LinkTo>
+        {{/if}}
       </div>
     </div>
   </div>

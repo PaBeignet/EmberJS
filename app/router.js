@@ -10,6 +10,6 @@ Router.map(function () {
   this.route('testNew');
   this.route('contacts', function () {
     this.route('add');
-    this.route('update');
+    this.route('update', { path: 'update/:contacts_id' }); //On passe un paramètre à la route
   });
 });
