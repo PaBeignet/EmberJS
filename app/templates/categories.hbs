@@ -1,0 +1,18 @@
+{{page-title "Categories"}}
+<table class="table">
+  <tbody>
+  {{#each @model.categories as |category|}}
+    <tr>
+      <td>{{category.nom}}</td>
+      <td>
+        <LinkTo class="btn btn-primary btn-sm" @route="contacts.update" @model={{category}}><i class="bi bi-pencil-fill"></i></LinkTo>
+        <button class="btn btn-danger btn-sm" type="button" {{action "delete" category}}>
+          <i class="bi bi-x"></i>
+        </button>
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+<LinkTo class="btn btn-primary" @route="categories.add">Ajouter un categories</LinkTo>
+{{outlet}}

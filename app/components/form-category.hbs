@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row align-items-start">
+      <div class="col">
+        <Input required class="form-control" @value={{@category.name}} placeholder="Nom"/>
+      </div>
+      <div class="col">
+        <button class="btn btn-success" type="button" {{on "click" (fn this.save @category)}}>Valider</button>
+        {{# if @cancelRoute}}
+          <LinkTo class="btn btn-danger" @route={{@cancelRoute}}>Annuler</LinkTo>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
