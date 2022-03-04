@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   let ENV = {
-    modulePrefix: 'app-vierge',
+    modulePrefix: 'tds',
     environment,
     rootURL: '/',
     locationType: 'history',

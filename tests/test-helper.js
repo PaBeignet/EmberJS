@@ -1,5 +1,5 @@
-import Application from 'app-vierge/app';
-import config from 'app-vierge/config/environment';
+import Application from 'tds/app';
+import config from 'tds/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
