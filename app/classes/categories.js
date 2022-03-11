@@ -7,7 +7,7 @@ export default class Categories {
     set(this, 'data', data);
   }
 
-  get contacts() {
+  get categories() {
     return this.data.filterBy('isDeleted', false);
   }
 

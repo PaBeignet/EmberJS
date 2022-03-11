@@ -4,5 +4,5 @@ export default class ContactModel extends Model {
   @attr('string') nom;
   @attr('string') prenom;
   @attr('string') email;
-  @belongsTo('categories.js') category;
+  @belongsTo('category', { async: true, autoSave: true }) category;
 }

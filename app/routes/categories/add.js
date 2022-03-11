@@ -10,8 +10,12 @@ export default class CategoriesAddRoute extends Route {
     return {};
   }
 
+  setupController(controller) {
+    controller.set('save', this.save);
+  }
+
   @action save(category) {
-    let c = this.store.createRecord('categories', category);
+    let c = this.store.createRecord('category', category);
     c.save().then(() => {
       this.router.transitionTo('categories');
     });
