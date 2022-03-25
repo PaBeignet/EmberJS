@@ -46,12 +46,12 @@
   <td></td>
   <td></td>
   <td>{{@model.amount}} €</td>
-  <td>{{@model.toPay}} €</td>
+  <td>{{this.aPayer}} €</td>
 </tr>
   </tbody>
 </table>
 
-<h1>Produits préparés ({{@model.count}})</h1>
+<h1>Produits préparés ({{this.nbEstPrepare}})</h1>
 <div class="ui relaxed divided list">
   {{#each @model.orderdetails as |detail|}}
     {{#if detail.prepared}}
@@ -66,4 +66,4 @@
   {{/each}}
 </div>
 
-<button type="button" class="ui button positive" {{action "save" @model.id @model.amount}}><i class="check icon"></i> Valider pour {{@model.toPay}} €</button>
+<button class="ui button positive" type="button" {{action 'save' @model.id this.aPayer}}><i class="check icon"></i> Valider pour {{this.aPayer}} €</button>

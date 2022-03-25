@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
-import { action } from '@ember/object';
+import { action, set } from '@ember/object';
 
 export default class OrderRoute extends Route {
   @service store;
@@ -11,13 +11,18 @@ export default class OrderRoute extends Route {
     });
   }
 
+  setupController(controller, model) {
+    controller.set('order', model);
+  }
+
   @action
   save(idOrder, montant) {
-    this.store.findRecord('order', idOrder).then(function (order) {
+    this.store.findRecord('order', idOrder).then((order) => {
       order.toPay = montant;
       order.status = 'prepared';
-      order.save();
+      order.save().then(() => {
+        this.transitionTo('board');
+      });
     });
-    this.transitionTo('board');
   }
 }

@@ -8,6 +8,6 @@ export default class OrderdetailModel extends Model {
 
   get amount() {
     let x = this.product.get('price') * this.quantity;
-    return x.toFixed(2);
+    return x;
   }
 }
