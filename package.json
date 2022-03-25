@@ -1,8 +1,8 @@
 {
-  "name": "app-vierge",
+  "name": "tds",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for app-vierge goes here",
+  "description": "Small description for tds goes here",
   "repository": "",
   "license": "MIT",
   "author": "",
@@ -23,7 +23,6 @@
     "test:ember": "ember test"
   },
   "devDependencies": {
-    "@ember/jquery": "^2.0.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
     "@glimmer/component": "^1.0.4",

@@ -5,6 +5,7 @@ import { set } from '@ember/object';
 export default class UserAuthService extends Service {
   @tracked user = null;
   storage;
+
   constructor() {
     super();
     this.storage = sessionStorage;
@@ -13,20 +14,24 @@ export default class UserAuthService extends Service {
       set(this, 'user', u);
     }
   }
-  //Retourne l'employé connecté
-  getUser() {
-    return this.user;
-  }
+
   //Retourne vrai si un employé est connecté
   get isAuth() {
     return this.user !== null;
   }
+
+  //Retourne l'employé connecté
+  getUser() {
+    return this.user;
+  }
+
   //Déconnecte l'employé actuellement connecté
   logout() {
     this.user = null;
     this.storage.removeItem('user');
     this.storage.clear();
   }
+
   //A appeler pour connexion de l'employé, après validation positive du formulaire de connexion
   login(user) {
     this.user = user;
