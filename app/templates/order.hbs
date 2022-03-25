@@ -1,4 +1,3 @@
-{{page-title "Order"}}
 <div class="ui container">
   <LinkTo class="ui button brown" @route="board">Retour aux commandes à préparer</LinkTo>
 </div>
@@ -23,13 +22,13 @@
   </tr></thead>
   <tbody>
   {{#each @model.orderdetails as |detail|}}
-    {{#if (eq @model.status 'prepared')}}
-      <tr class="positive">
-        <td></td>
+    {{#if detail.prepared}}
+      <tr class="ui positive">
+        <td>{{detail.product.name}}</td>
         <td>{{detail.quantity}}</td>
         <td>{{detail.product.price}}</td>
-        <td>{{detail.amount}}</td>
-        <td><input type="checkbox"></td>
+        <td>{{detail.amount}} €</td>
+        <td><Input @type="checkbox" @checked={{detail.prepared}}/></td>
       </tr>
     {{else}}
       <tr>
@@ -37,7 +36,8 @@
         <td>{{detail.quantity}}</td>
         <td>{{detail.product.price}}</td>
         <td>{{detail.amount}} €</td>
-        <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
+
+        <td><Input @type="checkbox" @checked={{detail.prepared}}/></td>
       </tr>
     {{/if}}
   {{/each}}
@@ -54,18 +54,16 @@
 <h1>Produits préparés ({{@model.count}})</h1>
 <div class="ui relaxed divided list">
   {{#each @model.orderdetails as |detail|}}
+    {{#if detail.prepared}}
       <div class="item">
         <i class="large cart middle aligned icon"></i>
         <div class="content">
           <a class="header">{{detail.product.name}}</a>
           <div class="description">{{detail.product.price}} X {{detail.quantity}}</div>
         </div>
-
       </div>
+    {{/if}}
   {{/each}}
 </div>
 
-<LinkTo @route="board" class="ui button positive"><i class="check icon"></i> Valider pour {{@model.amount}} €</LinkTo>
-
-
-{{outlet}}
+<button type="button" class="ui button positive" {{action "save" @model.id @model.amount}}><i class="check icon"></i> Valider pour {{@model.toPay}} €</button>
