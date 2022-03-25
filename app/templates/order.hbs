@@ -1,2 +1,71 @@
 {{page-title "Order"}}
+<div class="ui container">
+  <LinkTo class="ui button brown" @route="board">Retour aux commandes à préparer</LinkTo>
+</div>
+<br>
+<div class="ui container">
+  <h4 class="ui inverted segment">{{@model.user.name}} ({{@model.user.email}})</h4>
+</div>
+<br>
+<div class="ui container">
+  <label class="ui grey label">{{@model.dateCreation}}</label>
+</div>
+
+
+<table class="ui celled table">
+  <thead>
+  <tr>
+    <th>Produit</th>
+    <th>Quantité</th>
+    <th>Prix</th>
+    <th>Montant</th>
+    <th>Préparation</th>
+  </tr></thead>
+  <tbody>
+  {{#each @model.orderdetails as |detail|}}
+    {{#if (eq @model.status 'prepared')}}
+      <tr class="positive">
+        <td></td>
+        <td>{{detail.quantity}}</td>
+        <td>{{detail.product.price}}</td>
+        <td>{{detail.amount}}</td>
+        <td><input type="checkbox"></td>
+      </tr>
+    {{else}}
+      <tr>
+        <td>{{detail.product.name}}</td>
+        <td>{{detail.quantity}}</td>
+        <td>{{detail.product.price}}</td>
+        <td>{{detail.amount}} €</td>
+        <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
+      </tr>
+    {{/if}}
+  {{/each}}
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td>{{@model.amount}} €</td>
+  <td>{{@model.toPay}} €</td>
+</tr>
+  </tbody>
+</table>
+
+<h1>Produits préparés ({{@model.count}})</h1>
+<div class="ui relaxed divided list">
+  {{#each @model.orderdetails as |detail|}}
+      <div class="item">
+        <i class="large cart middle aligned icon"></i>
+        <div class="content">
+          <a class="header">{{detail.product.name}}</a>
+          <div class="description">{{detail.product.price}} X {{detail.quantity}}</div>
+        </div>
+
+      </div>
+  {{/each}}
+</div>
+
+<LinkTo @route="board" class="ui button positive"><i class="check icon"></i> Valider pour {{@model.amount}} €</LinkTo>
+
+
 {{outlet}}

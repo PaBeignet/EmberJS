@@ -7,6 +7,7 @@ export default class OrderdetailModel extends Model {
   @belongsTo('order') order;
 
   get amount() {
-    return this.product.get('price') * this.quantity;
+    let x = this.product.get('price') * this.quantity;
+    return x.toFixed(2);
   }
 }
